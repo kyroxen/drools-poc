@@ -1,0 +1,24 @@
+package rule_table;
+//generated from Decision Table
+import com.codeusingjava.bootdrools.model.OfferEngineRequestDto;
+import com.codeusingjava.bootdrools.model.CalcFunction;
+// rule values at A10, header at A5
+rule "Offer For Fixed"
+	when
+		$dto:OfferEngineRequestDto($dto.getCibil() >= (0), $dto.getCibil() <= (300), $dto.getBajajSegment()==(1), $dto.getBajajStatus()==("PQ"))
+	then
+		$dto.setRoi(12 + 100);
+		$dto.setChannel("Green Channel");
+		$dto.setFunctionable($dto.getChannel() + $dto.getRoi());
+end
+
+// rule values at A11, header at A5
+rule "Offer For Recurring"
+	when
+		$dto:OfferEngineRequestDto($dto.getCibil() >= (301), $dto.getCibil() <= (600), $dto.getBajajSegment()==(2), $dto.getBajajStatus()==("PA"))
+	then
+		$dto.setRoi(20 + 100);
+		$dto.setChannel("Red Channel");
+		$dto.setFunctionable($dto.getChannel() + $dto.getRoi());
+end
+
